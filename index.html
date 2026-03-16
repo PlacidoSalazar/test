@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid + Fluid Type</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+:root{
+
+--margin-desktop:64px;
+--margin-tablet:40px;
+--margin-mobile:20px;
+
+--gutter:16px;
+
+/* fluid type */
+
+--h1:clamp(40px,6vw,96px);
+--h2:clamp(32px,4.5vw,64px);
+--h3:clamp(26px,3vw,40px);
+--h4:clamp(22px,2.2vw,28px);
+--body:clamp(16px,1.2vw,18px);
+--small:clamp(14px,1vw,16px);
+
+}
+
+body{
+background:#111;
+color:white;
+font-family:system-ui, sans-serif;
+}
+
+/* container */
+
+.container{
+position:relative;
+width:100%;
+margin:auto;
+padding-left:var(--margin-desktop);
+padding-right:var(--margin-desktop);
+}
+
+/* grid */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(12,1fr);
+gap:var(--gutter);
+min-height:100dvh;
+}
+
+/* grid visual */
+
+.col{
+background:rgba(255,120,0,0.15);
+border:1px solid rgba(255,120,0,0.35);
+}
+
+/* typography overlay */
+
+.type-demo{
+
+position:absolute;
+top:120px;
+left:var(--margin-desktop);
+
+max-width:700px;
+
+display:flex;
+flex-direction:column;
+gap:28px;
+
+z-index:10;
+
+}
+
+/* type scale */
+
+.type-demo h1{font-size:var(--h1);}
+.type-demo h2{font-size:var(--h2);}
+.type-demo h3{font-size:var(--h3);}
+.type-demo h4{font-size:var(--h4);}
+.type-demo p{font-size:var(--body);}
+.type-demo small{font-size:var(--small); opacity:.7;}
+
+/* tablet */
+
+@media (max-width:1024px){
+
+.container{
+padding-left:var(--margin-tablet);
+padding-right:var(--margin-tablet);
+}
+
+.grid{
+grid-template-columns:repeat(8,1fr);
+}
+
+.col:nth-child(n+9){
+display:none;
+}
+
+.type-demo{
+left:var(--margin-tablet);
+}
+
+}
+
+/* mobile */
+
+@media (max-width:768px){
+
+.container{
+padding-left:var(--margin-mobile);
+padding-right:var(--margin-mobile);
+}
+
+.grid{
+grid-template-columns:repeat(4,1fr);
+}
+
+.col:nth-child(n+5){
+display:none;
+}
+
+.type-demo{
+left:var(--margin-mobile);
+top:80px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- GRID -->
+
+<div class="grid">
+
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+<div class="col"></div>
+
+</div>
+
+<!-- TYPOGRAPHY -->
+
+<div class="type-demo">
+
+<h1>H1 Fluid Heading</h1>
+<h2>H2 Fluid Heading</h2>
+<h3>H3 Fluid Heading</h3>
+<h4>H4 Fluid Heading</h4>
+
+<p>Body text fluid size example.</p>
+
+<small>Small caption text</small>
+
+</div>
+
+</div>
+
+</body>
+</html>
