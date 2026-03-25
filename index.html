@@ -3,33 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
   <title>Folio Presentation</title>
 
-  <!-- 🔥 Fuerza negro inmediato -->
-  <meta name="color-scheme" content="dark" />
-
   <style>
-    html, body {
-      background: #000;
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body {
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
       font-family: Arial, sans-serif;
-      opacity: 0;
-    }
-
-    .ready body {
-      opacity: 1;
-      transition: opacity 0.6s ease;
     }
 
     .container {
+      position: relative;
       width: 100%;
       height: 100vh;
       background: #000;
@@ -40,22 +33,43 @@
       height: 100%;
       border: none;
       display: block;
+      background: #000;
+    }
+
+    .cover {
+      position: absolute;
+      inset: 0;
+      background: #000;
+      z-index: 10;
+      opacity: 1;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+
+    .cover.hide {
+      opacity: 0;
     }
   </style>
-
-  <!-- ⚡️ Esto corre ANTES de pintar -->
-  <script>
-    document.documentElement.classList.add("ready");
-  </script>
-
 </head>
-
 <body>
   <div class="container">
+    <div class="cover" id="cover"></div>
+
     <iframe
       src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/t6F5vDScr8wAnWkF6cxf85/Folio-present?node-id=1-5&p=f&viewport=492%2C661%2C0.03&t=FnKKB5d6ohkpEADT-1&scaling=contain&content-scaling=fixed&page-id=0%3A1"
       allowfullscreen>
     </iframe>
   </div>
+
+  <script>
+    const cover = document.getElementById("cover");
+
+    // Espera un poco para tapar el flash blanco del iframe de Figma
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        cover.classList.add("hide");
+      }, 900);
+    });
+  </script>
 </body>
 </html>
