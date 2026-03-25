@@ -1,36 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#000;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Folio Presentation</title>
 
-  <!-- 🔥 Anti-flash negro inmediato -->
-  <style>
-    html {
-      background: #000;
-    }
-  </style>
+  <!-- 🔥 Fuerza negro inmediato -->
+  <meta name="color-scheme" content="dark" />
 
   <style>
+    html, body {
+      background: #000;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html, body {
-      background: #000;
-    }
-
     body {
       font-family: Arial, sans-serif;
       opacity: 0;
-      transition: opacity 0.6s ease;
     }
 
-    body.loaded {
+    .ready body {
       opacity: 1;
+      transition: opacity 0.6s ease;
     }
 
     .container {
@@ -46,6 +42,12 @@
       display: block;
     }
   </style>
+
+  <!-- ⚡️ Esto corre ANTES de pintar -->
+  <script>
+    document.documentElement.classList.add("ready");
+  </script>
+
 </head>
 
 <body>
@@ -55,12 +57,5 @@
       allowfullscreen>
     </iframe>
   </div>
-
-  <!-- ⚡️ Fade-in al cargar -->
-  <script>
-    window.addEventListener("load", () => {
-      document.body.classList.add("loaded");
-    });
-  </script>
 </body>
 </html>
